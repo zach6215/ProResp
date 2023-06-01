@@ -25,7 +25,7 @@ namespace LICommunicationConsoleApp
             do
             {
                 Console.WriteLine("Enter 'quit' to quit.");
-                Console.WriteLine("Enter command for LI-7000: ");
+                Console.WriteLine("Enter command for LI-7000 (must be in format (Command(sub-command element))<lf> ): ");
 
                 command = Console.ReadLine();
 
