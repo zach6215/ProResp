@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lYDAqfvzAy0jcQgWTVw0goicfs0XG0kaqJRgOormkGWodc34YYqEngUIZNorXRI2CZqOSTapejSkvQh5X3AgVQ==",
+  "dgSpecHash": "Ps+P7Q7Ym9BzXuYOVFr1RvcsHPICANguupATVgep1/QYCAazFLdHN7jt2nKJeDwrwXf743Nt60eGD1ymjTT3ag==",
   "success": true,
   "projectFilePath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\LICommunicationConsoleApp\\LICommunicationConsoleApp\\LICommunicationConsoleApp.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,9 @@
     "C:\\Users\\zach6\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\zach6\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\zach6\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\zach6\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
+    "C:\\Users\\zach6\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\system.management\\7.0.1\\system.management.7.0.1.nupkg.sha512"
   ],
   "logs": []
 }

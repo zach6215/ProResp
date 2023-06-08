@@ -4,6 +4,7 @@ namespace LICommunicationConsoleApp
 {
     using System;
     using System.IO.Ports;
+    using System.Management;
     public class Program
     {
         public static void Main()
