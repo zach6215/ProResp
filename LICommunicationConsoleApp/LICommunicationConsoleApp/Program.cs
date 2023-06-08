@@ -8,6 +8,45 @@ namespace LICommunicationConsoleApp
     {
         public static void Main()
         {
+            string result;
+
+            while (true)
+            {
+                Console.WriteLine("Menu");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("1: Serial Port");
+                Console.WriteLine("2: USB Port");
+                Console.WriteLine("3: Quit");
+                Console.WriteLine("What connection do you want to test?");
+                result = Console.ReadLine();
+
+                switch (result)
+                {
+                    case "1":
+                        SerialPortTest();
+                        break;
+
+                    case "2":
+                        USBPortTest();
+                        break;
+
+                    case "3":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid input!");
+                        break;
+                }
+            }
+        }
+
+        private static void USBPortTest()
+        {
+
+        }
+
+        private static void SerialPortTest()
+        {
             SerialPort serialPort = new SerialPort("COM1", 9600, Parity.None, 8, StopBits.One); // Name, Baudrate, Parity, Databits, Stopbits
 
             try
@@ -42,7 +81,6 @@ namespace LICommunicationConsoleApp
             } while (command != "quit" && command != "");
 
             serialPort.Close();
-
         }
     }
 }
