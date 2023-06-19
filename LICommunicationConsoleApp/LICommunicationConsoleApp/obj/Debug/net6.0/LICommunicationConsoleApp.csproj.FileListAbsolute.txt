@@ -22,3 +22,7 @@ C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LIComm
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.IO.Ports.dll
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.IO.Ports.dll
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\obj\Debug\net6.0\LICommunicationConsoleApp.csproj.CopyComplete
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\LibUsbDotNet.LibUsbDotNet.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\System.Management.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\LICommunicationConsoleApp\LICommunicationConsoleApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Management.dll
