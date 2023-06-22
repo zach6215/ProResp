@@ -53,6 +53,7 @@
             string userInput = string.Empty;
             UsbEndpointReader readerLI7000;
             UsbEndpointWriter writerLI7000;
+            UsbEndpointReader dataReaderLI7000;
             int bytesWritten;
             
 
@@ -72,6 +73,7 @@
 
                 readerLI7000 = LI7000.OpenEndpointReader(ReadEndpointID.Ep01);
                 writerLI7000 = LI7000.OpenEndpointWriter(WriteEndpointID.Ep02);
+                dataReaderLI7000 = LI7000.OpenEndpointReader(ReadEndpointID.Ep06); //6
             }
             catch (Exception ex)
             {
@@ -105,23 +107,28 @@
                         ErrorCode ec = ErrorCode.None;
                         Console.WriteLine("Input command:");
                         userInput = Console.ReadLine();
-                        ec = writerLI7000.Write(Encoding.Default.GetBytes(userInput), 2000, out bytesWritten);
+                        ec = writerLI7000.Write(Encoding.Default.GetBytes(userInput), 1000, out bytesWritten);
 
                         if (ec != ErrorCode.None) throw new Exception(UsbDevice.LastErrorString);
 
                         
                         int bytesRead;
+                        int dataBytesRead;
                         string response = string.Empty;
 
                         do
                         {
                             byte[] readBuffer = new byte[1024];
-                            ec = readerLI7000.Read(readBuffer, 5000, out bytesRead);
+                            ec = readerLI7000.Read(readBuffer, 1000, out bytesRead);
 
-                            response += Encoding.UTF8.GetString(readBuffer, 0, readBuffer.Length);
+                            response += Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
+
+                            ec = dataReaderLI7000.Read(readBuffer, 1000, out dataBytesRead);
+
+                            response += Encoding.UTF8.GetString(readBuffer, 0, dataBytesRead);
 
                             //if (ec != ErrorCode.None) throw new Exception(UsbDevice.LastErrorString);
-                        } while (bytesRead > 0);
+                        } while (bytesRead > 0 || dataBytesRead > 0);
                         Console.WriteLine("Response: " + response);
 
                         break;
