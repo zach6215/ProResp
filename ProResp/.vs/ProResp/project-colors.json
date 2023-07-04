@@ -15,7 +15,12 @@
       "ProjectGuid": "44b10784-3897-49c8-ba56-02478a2fdfe4",
       "DisplayName": "ExperimentEngine.Tests",
       "ColorIndex": 2
+    },
+    "f29e8562-2298-41f0-bfb9-5a2edf9e8636": {
+      "ProjectGuid": "f29e8562-2298-41f0-bfb9-5a2edf9e8636",
+      "DisplayName": "LI7000Connection",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

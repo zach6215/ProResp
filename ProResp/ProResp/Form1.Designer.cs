@@ -94,6 +94,7 @@
             this.Stop_Button.TabIndex = 4;
             this.Stop_Button.Text = "Stop";
             this.Stop_Button.UseVisualStyleBackColor = true;
+            this.Stop_Button.Click += new System.EventHandler(this.Stop_Button_Click);
             // 
             // ActiveChamber_Label
             // 

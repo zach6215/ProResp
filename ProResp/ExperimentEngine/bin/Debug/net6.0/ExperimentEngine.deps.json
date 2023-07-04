@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "ProResp/1.0.0": {
-        "dependencies": {
-          "ExperimentEngine": "1.0.0"
-        },
-        "runtime": {
-          "ProResp.dll": {}
-        }
-      },
       "ExperimentEngine/1.0.0": {
         "runtime": {
           "ExperimentEngine.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "ProResp/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "ExperimentEngine/1.0.0": {
       "type": "project",
       "serviceable": false,
