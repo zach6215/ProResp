@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {
-      "ExperimentEngine/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/ExperimentEngine.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ExperimentEngine.dll": {}
-        }
-      }
-    }
+    "net6.0": {}
   },
-  "libraries": {
-    "ExperimentEngine/1.0.0": {
-      "type": "project",
-      "path": "../ExperimentEngine/ExperimentEngine.csproj",
-      "msbuildProject": "../ExperimentEngine/ExperimentEngine.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": [
-      "ExperimentEngine >= 1.0.0"
-    ]
+    "net6.0": []
   },
   "packageFolders": {
     "C:\\Users\\zach6\\.nuget\\packages\\": {},
@@ -33,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ProResp\\ProResp.csproj",
-      "projectName": "ProResp",
-      "projectPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ProResp\\ProResp.csproj",
+      "projectUniqueName": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\LI7000Connection\\LI7000Connection.csproj",
+      "projectName": "LI7000Connection",
+      "projectPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\LI7000Connection\\LI7000Connection.csproj",
       "packagesPath": "C:\\Users\\zach6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ProResp\\obj\\",
+      "outputPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\LI7000Connection\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -48,20 +29,16 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
-          "projectReferences": {
-            "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ExperimentEngine\\ExperimentEngine.csproj": {
-              "projectPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ExperimentEngine\\ExperimentEngine.csproj"
-            }
-          }
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -71,8 +48,8 @@
       }
     },
     "frameworks": {
-      "net6.0-windows7.0": {
-        "targetAlias": "net6.0-windows",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "imports": [
           "net461",
           "net462",
@@ -86,9 +63,6 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
-          },
-          "Microsoft.WindowsDesktop.App.WindowsForms": {
-            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"

@@ -30,7 +30,7 @@
         {
             this.CheckAllValves_Button = new System.Windows.Forms.Button();
             this.StartNewExperiment_Button = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.valveCheckedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.ValveChecklist_Label = new System.Windows.Forms.Label();
             this.Stop_Button = new System.Windows.Forms.Button();
             this.ActiveChamber_Label = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.FinalH2O_Label = new System.Windows.Forms.Label();
             this.FinalTemp_Label = new System.Windows.Forms.Label();
             this.FinalFlow_Label = new System.Windows.Forms.Label();
+            this.SelectAllValves = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CheckAllValves_Button
@@ -66,14 +67,15 @@
             this.StartNewExperiment_Button.TabIndex = 1;
             this.StartNewExperiment_Button.Text = "Start New Experiment";
             this.StartNewExperiment_Button.UseVisualStyleBackColor = true;
+            this.StartNewExperiment_Button.Click += new System.EventHandler(this.StartNewExperiment_Button_Click);
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(374, 121);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(271, 508);
-            this.checkedListBox1.TabIndex = 2;
+            this.valveCheckedListBox1.FormattingEnabled = true;
+            this.valveCheckedListBox1.Location = new System.Drawing.Point(374, 121);
+            this.valveCheckedListBox1.Name = "valveCheckedListBox1";
+            this.valveCheckedListBox1.Size = new System.Drawing.Size(271, 508);
+            this.valveCheckedListBox1.TabIndex = 2;
             // 
             // ValveChecklist_Label
             // 
@@ -83,7 +85,6 @@
             this.ValveChecklist_Label.TabIndex = 3;
             this.ValveChecklist_Label.Text = "Select Valves For Experiment";
             this.ValveChecklist_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ValveChecklist_Label.Click += new System.EventHandler(this.label1_Click);
             // 
             // Stop_Button
             // 
@@ -93,6 +94,7 @@
             this.Stop_Button.TabIndex = 4;
             this.Stop_Button.Text = "Stop";
             this.Stop_Button.UseVisualStyleBackColor = true;
+            this.Stop_Button.Click += new System.EventHandler(this.Stop_Button_Click);
             // 
             // ActiveChamber_Label
             // 
@@ -102,7 +104,6 @@
             this.ActiveChamber_Label.Size = new System.Drawing.Size(154, 32);
             this.ActiveChamber_Label.TabIndex = 5;
             this.ActiveChamber_Label.Text = "Active Valve: ";
-            this.ActiveChamber_Label.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // CurrentCO2_Label
             // 
@@ -194,11 +195,21 @@
             this.FinalFlow_Label.TabIndex = 15;
             this.FinalFlow_Label.Text = "Final Flow:";
             // 
+            // SelectAllValves
+            // 
+            this.SelectAllValves.Location = new System.Drawing.Point(374, 635);
+            this.SelectAllValves.Name = "SelectAllValves";
+            this.SelectAllValves.Size = new System.Drawing.Size(271, 46);
+            this.SelectAllValves.TabIndex = 16;
+            this.SelectAllValves.Text = "Select All Valves";
+            this.SelectAllValves.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1613, 724);
+            this.Controls.Add(this.SelectAllValves);
             this.Controls.Add(this.FinalFlow_Label);
             this.Controls.Add(this.FinalTemp_Label);
             this.Controls.Add(this.FinalH2O_Label);
@@ -212,7 +223,7 @@
             this.Controls.Add(this.ActiveChamber_Label);
             this.Controls.Add(this.Stop_Button);
             this.Controls.Add(this.ValveChecklist_Label);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.valveCheckedListBox1);
             this.Controls.Add(this.StartNewExperiment_Button);
             this.Controls.Add(this.CheckAllValves_Button);
             this.Name = "Form1";
@@ -226,7 +237,7 @@
 
         private Button CheckAllValves_Button;
         private Button StartNewExperiment_Button;
-        private CheckedListBox checkedListBox1;
+        private CheckedListBox valveCheckedListBox1;
         private Label ValveChecklist_Label;
         private Button Stop_Button;
         private Label ActiveChamber_Label;
@@ -240,5 +251,6 @@
         private Label FinalH2O_Label;
         private Label FinalTemp_Label;
         private Label FinalFlow_Label;
+        private Button SelectAllValves;
     }
 }
