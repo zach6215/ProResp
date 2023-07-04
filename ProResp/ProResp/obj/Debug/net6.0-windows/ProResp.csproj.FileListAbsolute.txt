@@ -18,3 +18,6 @@ C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\obj\Debug\net6.0
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\bin\Debug\net6.0-windows\ExperimentEngine.dll
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\bin\Debug\net6.0-windows\ExperimentEngine.pdb
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\obj\Debug\net6.0-windows\ProResp.csproj.CopyComplete
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\bin\Debug\net6.0-windows\LibUsbDotNet.LibUsbDotNet.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\bin\Debug\net6.0-windows\LI7000Connection.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ProResp\bin\Debug\net6.0-windows\LI7000Connection.pdb

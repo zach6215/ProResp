@@ -39,7 +39,7 @@ namespace ProResp
                 checkedValves.Add(checkedItem);
             }
 
-
+            experimentEngine = new ExperimentEngine(checkedValves, msValveSwitchTime);
 
             //Future: disable checkboxlist so current experiment values are shown and can't be changed.
             //One option is to use OnClick event and just undo a check and display error message.

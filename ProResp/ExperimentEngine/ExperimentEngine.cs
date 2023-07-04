@@ -2,6 +2,7 @@
 {
     using System;
     using System.Timers;
+    using LI7000Connection;
     public class ExperimentEngine
     {
         private List<Valve> activeValvesList;
@@ -10,6 +11,7 @@
         private Timer valveValueTimer;
         private Timer updateActiveValveTimer;
         private TextWriter outputFile;
+        private LI7000Connection LI7000;
         
 
         public ExperimentEngine(List<string> argActiveValves, int argMsValveSwitch)
@@ -26,6 +28,8 @@
             valveValueTimer.Elapsed += this.UpdateValveValue;
             valveValueTimer.AutoReset = true;
             valveValueTimer.Enabled = true;
+
+            LI7000 = new LI7000Connection();
         }
 
         private void UpdateValveValue(Object source, ElapsedEventArgs e)

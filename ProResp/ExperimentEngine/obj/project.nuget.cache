@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "r0NZYUjwqibHUh1y5UzysqrHqpNeaOVsXpZarVyeLAzmF7t83pDeqgFHbd0SDU9v2lVV6DCiJS5YzK2/6DHlNw==",
+  "dgSpecHash": "xbqBVjrvjZB0jIaOiaVowPlzfG6qDdhPLz3lqFDI+ONtVGEB/y8o7slUBOL3eyt+zNJQibHg0Iqmc7QOGTTkvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\ExperimentEngine\\ExperimentEngine.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\zach6\\.nuget\\packages\\libusbdotnet\\2.2.29\\libusbdotnet.2.2.29.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\zach6\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
