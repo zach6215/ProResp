@@ -3,7 +3,9 @@
     using System;
     using System.Timers;
     using LI7000Connection;
-    public class ExperimentEngine
+    using System.ComponentModel;
+
+    public class ExperimentEngine:INotifyPropertyChanged
     {
         private List<Valve> activeValvesList;
         private int msValveSwitch; // Milliseconds until valve switch
@@ -12,6 +14,7 @@
         private Timer updateActiveValveTimer;
         private TextWriter outputFile;
         private LI7000Connection LI7000;
+        public event PropertyChangedEventHandler PropertyChanged;
         
 
         public ExperimentEngine(List<string> argActiveValves, int argMsValveSwitch)

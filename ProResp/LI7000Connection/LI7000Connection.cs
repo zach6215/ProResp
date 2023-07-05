@@ -14,6 +14,7 @@
         private UsbDeviceFinder LI7000Finder;
         private int readTimeLimit = 1000;
         private int writeTimeLimit = 1000;
+        private string? dataHeader;
 
         public LI7000Connection()
         {
@@ -45,22 +46,24 @@
         private void SetupLI7000()
         {
             ErrorCode errorCode = ErrorCode.None;
-            string configMessage = "(USB(Rate Polled)(Timestamp Long)(Sources(\"CO2B um/m\" \"H2OB mm/m\" \"T C\")))"; // 
+            string configMessage = "(USB(Rate Polled)(Timestamp None)(Sources(\"CO2B um/m\" \"H2OB mm/m\" \"T C\")))"; // 
             int bytesWritten;
             string? response;
 
             errorCode = this.writer.Write(Encoding.Default.GetBytes(configMessage), writeTimeLimit, out bytesWritten);
 
-            response = this.GetResponse();
+            response = this.GetResponse(this.messageReader);
 
             if (response != "\nOK\n")
             {
-                response += this.BufferClear();
-                throw new Exception("Invalid LI7000 configuration!");
+                //response += this.BufferClear();
+                throw new Exception("Invalid LI7000 configuration! LI7000 responded with: " + response);
             }
+
+            this.dataHeader = this.Poll();
         }
 
-        private string? GetResponse()
+        private string? GetResponse(UsbEndpointReader argReader)
         {
             string? response = null;
             ErrorCode errorCode = ErrorCode.None;
@@ -69,7 +72,7 @@
             do
             {
                 byte[] readBuffer = new byte[1024];
-                errorCode = this.messageReader.Read(readBuffer, readTimeLimit, out bytesRead);
+                errorCode = argReader.Read(readBuffer, readTimeLimit, out bytesRead);
 
                 if(bytesRead > 0)
                 {
@@ -82,7 +85,7 @@
         }
 
         //Sometimes the message endpoint won't clear if theres an error until you write again. This funciton is to fix this.
-        private string? BufferClear()
+        private string? MessageBufferClear()
         {
             int bytesWritten;
             int bytesRead;
@@ -104,6 +107,27 @@
             } while (bytesRead > 0);
 
             return response;
+        }
+
+        public string? Poll()
+        {
+            string? responseMessage = null;
+            string? responseData = null;
+            ErrorCode errorCode = ErrorCode.None;
+            int bytesWritten;
+
+
+            errorCode = this.writer.Write(Encoding.Default.GetBytes("(USB(Poll Now))"), this.writeTimeLimit,out bytesWritten);
+
+            responseMessage = this.GetResponse(this.messageReader);
+
+            if(responseMessage == "\nOK\n")
+            {
+                responseData = this.GetResponse(this.dataReader);
+            }
+
+
+            return responseData;
         }
     }
 }
