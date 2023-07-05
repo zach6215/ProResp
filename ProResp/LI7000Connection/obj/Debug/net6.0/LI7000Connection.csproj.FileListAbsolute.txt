@@ -1,0 +1,12 @@
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\bin\Debug\net6.0\LI7000Connection.deps.json
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\bin\Debug\net6.0\LI7000Connection.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\bin\Debug\net6.0\ref\LI7000Connection.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\bin\Debug\net6.0\LI7000Connection.pdb
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.csproj.AssemblyReference.cache
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.AssemblyInfoInputs.cache
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.AssemblyInfo.cs
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.csproj.CoreCompileInputs.cache
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\ref\LI7000Connection.dll
+C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\LI7000Connection\obj\Debug\net6.0\LI7000Connection.pdb

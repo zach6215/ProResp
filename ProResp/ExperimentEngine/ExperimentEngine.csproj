@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LI7000Connection\LI7000Connection.csproj" />
+  </ItemGroup>
+
 </Project>
