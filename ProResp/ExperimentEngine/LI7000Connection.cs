@@ -14,9 +14,9 @@
         private UsbDeviceFinder LI7000Finder;
         private int readTimeLimit = 1000;
         private int writeTimeLimit = 1000;
-        internal string? DataHeader
+        internal string DataHeader
         {
-            internal get;
+            get;
             private set;
         }
 
@@ -64,7 +64,20 @@
                 throw new Exception("Invalid LI7000 configuration! LI7000 responded with: " + response);
             }
 
-            this.DataHeader = this.Poll();
+            response = this.Poll();
+
+            if (response != null && response.Substring(0,5) == "DATAH")
+            {
+                response = response.Substring(7);
+                response = response.Replace("B", string.Empty);
+                response = response.Replace("\"", string.Empty);
+                response = response.Replace("\n", string.Empty);
+                this.DataHeader = response;
+            }
+            else
+            {
+                throw new Exception("Internal Error: Invalid LI7000 Data Header!");
+            }
         }
 
         private string? GetResponse(UsbEndpointReader argReader)

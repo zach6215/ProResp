@@ -1,26 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExperimentEngine
+﻿namespace ExperimentEngine
 {
-    internal class Valve
+    using System.ComponentModel;
+    public class Valve
     {
-        private string name;
-        private double CO2;
-        private double H20;
-        private double temp;
-        
-        internal Valve(string argName)
+        public string Name
         {
-            name = argName;
+            get;
+            private set; 
         }
 
-        internal void Update()
+        public double CO2
         {
+            get;
+            internal set;
+        }
 
+        public double H2O
+        {
+            get;
+            internal set;
+        }
+
+        public double Temperature
+        {
+            get;
+            internal set;
+        }
+
+        public double Flow
+        {
+            get;
+            internal set;
+        }
+
+        internal Valve(string argName)
+        {
+            this.Name = argName;
         }
     }
 }

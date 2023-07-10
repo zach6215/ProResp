@@ -86,19 +86,6 @@
             "rid": "win"
           }
         }
-      },
-      "LI7000Connection/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "LibUsbDotNet": "2.2.29"
-        },
-        "compile": {
-          "bin/placeholder/LI7000Connection.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/LI7000Connection.dll": {}
-        }
       }
     }
   },
@@ -263,16 +250,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "LI7000Connection/1.0.0": {
-      "type": "project",
-      "path": "../LI7000Connection/LI7000Connection.csproj",
-      "msbuildProject": "../LI7000Connection/LI7000Connection.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "LI7000Connection >= 1.0.0"
+      "LibUsbDotNet >= 2.2.29"
     ]
   },
   "packageFolders": {
@@ -306,11 +288,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\LI7000Connection\\LI7000Connection.csproj": {
-              "projectPath": "C:\\Users\\zach6\\OneDrive\\Desktop\\ProResp\\ProResp\\ProResp\\LI7000Connection\\LI7000Connection.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -322,6 +300,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "LibUsbDotNet": {
+            "target": "Package",
+            "version": "[2.2.29, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

@@ -69,7 +69,7 @@
             this.StartNewExperiment_Button.UseVisualStyleBackColor = true;
             this.StartNewExperiment_Button.Click += new System.EventHandler(this.StartNewExperiment_Button_Click);
             // 
-            // checkedListBox1
+            // valveCheckedListBox1
             // 
             this.valveCheckedListBox1.FormattingEnabled = true;
             this.valveCheckedListBox1.Location = new System.Drawing.Point(374, 121);
@@ -126,7 +126,7 @@
             // CurrentTemp_Label
             // 
             this.CurrentTemp_Label.AutoSize = true;
-            this.CurrentTemp_Label.Location = new System.Drawing.Point(1047, 382);
+            this.CurrentTemp_Label.Location = new System.Drawing.Point(1043, 382);
             this.CurrentTemp_Label.Name = "CurrentTemp_Label";
             this.CurrentTemp_Label.Size = new System.Drawing.Size(165, 32);
             this.CurrentTemp_Label.TabIndex = 8;
@@ -135,7 +135,7 @@
             // CurrentFlow_Label
             // 
             this.CurrentFlow_Label.AutoSize = true;
-            this.CurrentFlow_Label.Location = new System.Drawing.Point(1045, 456);
+            this.CurrentFlow_Label.Location = new System.Drawing.Point(1043, 483);
             this.CurrentFlow_Label.Name = "CurrentFlow_Label";
             this.CurrentFlow_Label.Size = new System.Drawing.Size(155, 32);
             this.CurrentFlow_Label.TabIndex = 9;
@@ -162,7 +162,7 @@
             // FinalCO2_Label
             // 
             this.FinalCO2_Label.AutoSize = true;
-            this.FinalCO2_Label.Location = new System.Drawing.Point(1319, 196);
+            this.FinalCO2_Label.Location = new System.Drawing.Point(1321, 200);
             this.FinalCO2_Label.Name = "FinalCO2_Label";
             this.FinalCO2_Label.Size = new System.Drawing.Size(121, 32);
             this.FinalCO2_Label.TabIndex = 12;
@@ -171,7 +171,7 @@
             // FinalH2O_Label
             // 
             this.FinalH2O_Label.AutoSize = true;
-            this.FinalH2O_Label.Location = new System.Drawing.Point(1325, 299);
+            this.FinalH2O_Label.Location = new System.Drawing.Point(1316, 294);
             this.FinalH2O_Label.Name = "FinalH2O_Label";
             this.FinalH2O_Label.Size = new System.Drawing.Size(131, 32);
             this.FinalH2O_Label.TabIndex = 13;
@@ -180,7 +180,7 @@
             // FinalTemp_Label
             // 
             this.FinalTemp_Label.AutoSize = true;
-            this.FinalTemp_Label.Location = new System.Drawing.Point(1328, 390);
+            this.FinalTemp_Label.Location = new System.Drawing.Point(1316, 382);
             this.FinalTemp_Label.Name = "FinalTemp_Label";
             this.FinalTemp_Label.Size = new System.Drawing.Size(135, 32);
             this.FinalTemp_Label.TabIndex = 14;
