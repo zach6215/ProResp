@@ -17,33 +17,56 @@
         private LI7000Connection LI7000;
         private string LI7000DataHeader;
 
-        //public event EventHandler<>
+        public event EventHandler<DataUpdateEventArgs> DataUpdated;
         
         public List<Valve> ValvesList 
         { 
           get { return new List<Valve>(valvesList); }
           private set { valvesList = value; }
         }
-        //public Valve ActiveValve
-        //{
-        //    get { return new Valve(this.activeValve.Name, this.activeValve.Data); }
-        //    private set { this.activeValve = value; }
-        //}
+        public Valve ActiveValve
+        {
+            get { return this.activeValve; }
+            private set { this.activeValve = value; }
+        }
 
 
         public ExperimentEngine(List<string> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer)
         {
             this.valvesList = new List<Valve>();
-            foreach(string valveName in argActiveValves)
+            this.LI7000 = new LI7000Connection();
+
+            this.LI7000DataHeader = this.LI7000.DataHeader;
+
+            string[] units = LI7000DataHeader.Split('\t');
+
+            foreach (string valveName in argActiveValves)
             {
-                this.valvesList.Add(new Valve(valveName));
+                Valve newValve = new Valve(valveName);
+
+                for (int i = 0; i < units.Length; i++)
+                {
+                    if (units[i].Contains("CO2"))
+                    {
+                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                        newValve.CO2Units = units[i];
+                    }
+                    else if (units[i].Contains("H2O"))
+                    {
+                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                        newValve.H2OUnits = units[i];
+                    }
+                    else if (units[i].Contains('T'))
+                    {
+                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                        newValve.TemperatureUnits = units[i];
+                    }
+                }
+                this.valvesList.Add(newValve);
             }
 
             this.activeValve = valvesList[0];
 
-            this.LI7000 = new LI7000Connection();
-
-            this.LI7000DataHeader = this.LI7000.DataHeader;
 
             this.msValveSwitchTime = argMsValveSwitchTime;
             this.msValveDataTime = argMsValveDataTime;
@@ -89,11 +112,26 @@
                             break;
                     }
                 }
+                this.DataUpdated.Invoke(this, new DataUpdateEventArgs(this.activeValve));
             }
         }
 
         public void Stop()
         {
+            if (this.valveDataTimer != null)
+            {
+                this.valveDataTimer.Stop();
+                this.valveDataTimer.Dispose();
+                this.valveDataTimer = null;
+            }
+            if (this.updateActiveValveTimer != null)
+            {
+                this.updateActiveValveTimer.Stop();
+                this.updateActiveValveTimer.Dispose();
+                this.updateActiveValveTimer = null;
+            }
+
+            this.LI7000.CloseConnection();
             //Disconnect all devices
             //Close stream
         }
