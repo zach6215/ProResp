@@ -11,8 +11,8 @@
         private Valve activeValve;
         private int msValveSwitchTime; // Milliseconds until valve switch
         private int msValveDataTime;    //Milliseconds until data is updated
-        private Timer valveDataTimer;  //CHANGE TIMERS TO WINDOWS.FORMS.TIMER
-        private Timer updateActiveValveTimer;
+        private Timer? valveDataTimer;
+        private Timer? valveSwitchTimer;
         private TextWriter outputFile;
         private LI7000Connection LI7000;
         private string LI7000DataHeader;
@@ -30,8 +30,13 @@
             private set { this.activeValve = value; }
         }
 
+        //Abhi: This constructor can be used to create experiment for Check Valves Button
+        public ExperimentEngine(List<string> argActiveValves, int argMsValveSwitchTime, Timer argValveSwitchTimer)
+        {
 
-        public ExperimentEngine(List<string> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer)
+        }
+
+        public ExperimentEngine(List<string> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer, Timer argValveSwitchTimer)
         {
             this.valvesList = new List<Valve>();
             this.LI7000 = new LI7000Connection();
@@ -76,12 +81,16 @@
             this.valveDataTimer.Interval = this.msValveDataTime;
             this.valveDataTimer.Elapsed += this.UpdateValveValue;
             this.valveDataTimer.AutoReset = true;
-            //valveValueTimer.SynchronizingObject = argSynchronizingObject;
+            this.valveSwitchTimer = argValveSwitchTimer;
+            this.valveSwitchTimer.Interval = this.msValveSwitchTime;
+            this.valveSwitchTimer.Elapsed += this.SwitchValves;
+            this.valveSwitchTimer.AutoReset = true;
         }
 
         public void Start()
         {
             this.valveDataTimer.Enabled=true;
+            this.valveSwitchTimer.Enabled=true;
             return;
         }
 
@@ -116,6 +125,12 @@
             }
         }
 
+        //Abhi: Add code to switch valves here. In the end it should invoke this.ValveSwitch event.
+        private void SwitchValves(Object source, ElapsedEventArgs e)
+        {
+
+        }
+
         public void Stop()
         {
             if (this.valveDataTimer != null)
@@ -124,14 +139,17 @@
                 this.valveDataTimer.Dispose();
                 this.valveDataTimer = null;
             }
-            if (this.updateActiveValveTimer != null)
+            if (this.valveSwitchTimer != null)
             {
-                this.updateActiveValveTimer.Stop();
-                this.updateActiveValveTimer.Dispose();
-                this.updateActiveValveTimer = null;
+                this.valveSwitchTimer.Stop();
+                this.valveSwitchTimer.Dispose();
+                this.valveSwitchTimer = null;
             }
 
-            this.LI7000.CloseConnection();
+            if (this.LI7000 != null)
+            {
+                this.LI7000.CloseConnection();
+            }
             //Disconnect all devices
             //Close stream
         }
