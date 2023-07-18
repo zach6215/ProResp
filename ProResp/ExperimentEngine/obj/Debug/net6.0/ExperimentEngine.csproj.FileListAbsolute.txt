@@ -10,6 +10,3 @@ C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\obj\Deb
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\obj\Debug\net6.0\ExperimentEngine.dll
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\obj\Debug\net6.0\ref\ExperimentEngine.dll
 C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\obj\Debug\net6.0\ExperimentEngine.pdb
-C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\bin\Debug\net6.0\LI7000Connection.dll
-C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\bin\Debug\net6.0\LI7000Connection.pdb
-C:\Users\zach6\OneDrive\Desktop\ProResp\ProResp\ProResp\ExperimentEngine\obj\Debug\net6.0\ExperimentEngine.csproj.CopyComplete

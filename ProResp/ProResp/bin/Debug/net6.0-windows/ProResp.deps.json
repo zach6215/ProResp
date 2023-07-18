@@ -45,18 +45,10 @@
       },
       "ExperimentEngine/1.0.0": {
         "dependencies": {
-          "LI7000Connection": "1.0.0"
-        },
-        "runtime": {
-          "ExperimentEngine.dll": {}
-        }
-      },
-      "LI7000Connection/1.0.0": {
-        "dependencies": {
           "LibUsbDotNet": "2.2.29"
         },
         "runtime": {
-          "LI7000Connection.dll": {}
+          "ExperimentEngine.dll": {}
         }
       }
     }
@@ -103,11 +95,6 @@
       "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
     },
     "ExperimentEngine/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LI7000Connection/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

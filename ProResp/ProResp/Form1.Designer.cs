@@ -45,6 +45,7 @@
             this.FinalTemp_Label = new System.Windows.Forms.Label();
             this.FinalFlow_Label = new System.Windows.Forms.Label();
             this.SelectAllValves = new System.Windows.Forms.Button();
+            this.CreateSaveFile_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CheckAllValves_Button
@@ -61,7 +62,7 @@
             // StartNewExperiment_Button
             // 
             this.StartNewExperiment_Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.StartNewExperiment_Button.Location = new System.Drawing.Point(54, 438);
+            this.StartNewExperiment_Button.Location = new System.Drawing.Point(54, 328);
             this.StartNewExperiment_Button.Name = "StartNewExperiment_Button";
             this.StartNewExperiment_Button.Size = new System.Drawing.Size(253, 141);
             this.StartNewExperiment_Button.TabIndex = 1;
@@ -69,7 +70,7 @@
             this.StartNewExperiment_Button.UseVisualStyleBackColor = true;
             this.StartNewExperiment_Button.Click += new System.EventHandler(this.StartNewExperiment_Button_Click);
             // 
-            // checkedListBox1
+            // valveCheckedListBox1
             // 
             this.valveCheckedListBox1.FormattingEnabled = true;
             this.valveCheckedListBox1.Location = new System.Drawing.Point(374, 121);
@@ -98,46 +99,41 @@
             // 
             // ActiveChamber_Label
             // 
-            this.ActiveChamber_Label.AutoSize = true;
             this.ActiveChamber_Label.Location = new System.Drawing.Point(1043, 115);
             this.ActiveChamber_Label.Name = "ActiveChamber_Label";
-            this.ActiveChamber_Label.Size = new System.Drawing.Size(154, 32);
+            this.ActiveChamber_Label.Size = new System.Drawing.Size(371, 32);
             this.ActiveChamber_Label.TabIndex = 5;
             this.ActiveChamber_Label.Text = "Active Valve: ";
             // 
             // CurrentCO2_Label
             // 
-            this.CurrentCO2_Label.AutoSize = true;
             this.CurrentCO2_Label.Location = new System.Drawing.Point(1040, 200);
             this.CurrentCO2_Label.Name = "CurrentCO2_Label";
-            this.CurrentCO2_Label.Size = new System.Drawing.Size(151, 32);
+            this.CurrentCO2_Label.Size = new System.Drawing.Size(374, 32);
             this.CurrentCO2_Label.TabIndex = 6;
             this.CurrentCO2_Label.Text = "Current CO2:";
             // 
             // CurrentH2O_Label
             // 
-            this.CurrentH2O_Label.AutoSize = true;
             this.CurrentH2O_Label.Location = new System.Drawing.Point(1042, 294);
             this.CurrentH2O_Label.Name = "CurrentH2O_Label";
-            this.CurrentH2O_Label.Size = new System.Drawing.Size(154, 32);
+            this.CurrentH2O_Label.Size = new System.Drawing.Size(372, 32);
             this.CurrentH2O_Label.TabIndex = 7;
             this.CurrentH2O_Label.Text = "Current H2O:";
             // 
             // CurrentTemp_Label
             // 
-            this.CurrentTemp_Label.AutoSize = true;
-            this.CurrentTemp_Label.Location = new System.Drawing.Point(1047, 382);
+            this.CurrentTemp_Label.Location = new System.Drawing.Point(1043, 382);
             this.CurrentTemp_Label.Name = "CurrentTemp_Label";
-            this.CurrentTemp_Label.Size = new System.Drawing.Size(165, 32);
+            this.CurrentTemp_Label.Size = new System.Drawing.Size(371, 32);
             this.CurrentTemp_Label.TabIndex = 8;
-            this.CurrentTemp_Label.Text = "Current Temp:";
+            this.CurrentTemp_Label.Text = "Current Temperature:";
             // 
             // CurrentFlow_Label
             // 
-            this.CurrentFlow_Label.AutoSize = true;
-            this.CurrentFlow_Label.Location = new System.Drawing.Point(1045, 456);
+            this.CurrentFlow_Label.Location = new System.Drawing.Point(1043, 483);
             this.CurrentFlow_Label.Name = "CurrentFlow_Label";
-            this.CurrentFlow_Label.Size = new System.Drawing.Size(155, 32);
+            this.CurrentFlow_Label.Size = new System.Drawing.Size(371, 32);
             this.CurrentFlow_Label.TabIndex = 9;
             this.CurrentFlow_Label.Text = "Current Flow:";
             // 
@@ -153,7 +149,7 @@
             // PreviousValve_Label
             // 
             this.PreviousValve_Label.AutoSize = true;
-            this.PreviousValve_Label.Location = new System.Drawing.Point(1321, 115);
+            this.PreviousValve_Label.Location = new System.Drawing.Point(1487, 115);
             this.PreviousValve_Label.Name = "PreviousValve_Label";
             this.PreviousValve_Label.Size = new System.Drawing.Size(172, 32);
             this.PreviousValve_Label.TabIndex = 11;
@@ -162,7 +158,7 @@
             // FinalCO2_Label
             // 
             this.FinalCO2_Label.AutoSize = true;
-            this.FinalCO2_Label.Location = new System.Drawing.Point(1319, 196);
+            this.FinalCO2_Label.Location = new System.Drawing.Point(1487, 200);
             this.FinalCO2_Label.Name = "FinalCO2_Label";
             this.FinalCO2_Label.Size = new System.Drawing.Size(121, 32);
             this.FinalCO2_Label.TabIndex = 12;
@@ -171,7 +167,7 @@
             // FinalH2O_Label
             // 
             this.FinalH2O_Label.AutoSize = true;
-            this.FinalH2O_Label.Location = new System.Drawing.Point(1325, 299);
+            this.FinalH2O_Label.Location = new System.Drawing.Point(1487, 294);
             this.FinalH2O_Label.Name = "FinalH2O_Label";
             this.FinalH2O_Label.Size = new System.Drawing.Size(131, 32);
             this.FinalH2O_Label.TabIndex = 13;
@@ -180,7 +176,7 @@
             // FinalTemp_Label
             // 
             this.FinalTemp_Label.AutoSize = true;
-            this.FinalTemp_Label.Location = new System.Drawing.Point(1328, 390);
+            this.FinalTemp_Label.Location = new System.Drawing.Point(1487, 382);
             this.FinalTemp_Label.Name = "FinalTemp_Label";
             this.FinalTemp_Label.Size = new System.Drawing.Size(135, 32);
             this.FinalTemp_Label.TabIndex = 14;
@@ -189,7 +185,7 @@
             // FinalFlow_Label
             // 
             this.FinalFlow_Label.AutoSize = true;
-            this.FinalFlow_Label.Location = new System.Drawing.Point(1326, 483);
+            this.FinalFlow_Label.Location = new System.Drawing.Point(1487, 483);
             this.FinalFlow_Label.Name = "FinalFlow_Label";
             this.FinalFlow_Label.Size = new System.Drawing.Size(125, 32);
             this.FinalFlow_Label.TabIndex = 15;
@@ -203,12 +199,24 @@
             this.SelectAllValves.TabIndex = 16;
             this.SelectAllValves.Text = "Select All Valves";
             this.SelectAllValves.UseVisualStyleBackColor = true;
+            this.SelectAllValves.Click += new System.EventHandler(this.SelectAllValves_Click);
+            // 
+            // CreateSaveFile_Button
+            // 
+            this.CreateSaveFile_Button.Location = new System.Drawing.Point(54, 508);
+            this.CreateSaveFile_Button.Name = "CreateSaveFile_Button";
+            this.CreateSaveFile_Button.Size = new System.Drawing.Size(253, 121);
+            this.CreateSaveFile_Button.TabIndex = 17;
+            this.CreateSaveFile_Button.Text = "Create Data File";
+            this.CreateSaveFile_Button.UseVisualStyleBackColor = true;
+            this.CreateSaveFile_Button.Click += new System.EventHandler(this.CreateSaveFile_Button_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1613, 724);
+            this.ClientSize = new System.Drawing.Size(1923, 724);
+            this.Controls.Add(this.CreateSaveFile_Button);
             this.Controls.Add(this.SelectAllValves);
             this.Controls.Add(this.FinalFlow_Label);
             this.Controls.Add(this.FinalTemp_Label);
@@ -252,5 +260,6 @@
         private Label FinalTemp_Label;
         private Label FinalFlow_Label;
         private Button SelectAllValves;
+        private Button CreateSaveFile_Button;
     }
 }

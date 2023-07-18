@@ -14,9 +14,9 @@
         private UsbDeviceFinder LI7000Finder;
         private int readTimeLimit = 1000;
         private int writeTimeLimit = 1000;
-        internal string? DataHeader
+        internal string DataHeader
         {
-            internal get;
+            get;
             private set;
         }
 
@@ -54,17 +54,31 @@
             int bytesWritten;
             string? response;
 
+            this.ClearBuffers();
+
             errorCode = this.writer.Write(Encoding.Default.GetBytes(configMessage), writeTimeLimit, out bytesWritten);
 
             response = this.GetResponse(this.messageReader);
 
             if (response != "\nOK\n")
             {
-                //response += this.BufferClear();
                 throw new Exception("Invalid LI7000 configuration! LI7000 responded with: " + response);
             }
 
-            this.DataHeader = this.Poll();
+            response = this.Poll();
+
+            if (response != null && response.Substring(0,5) == "DATAH")
+            {
+                response = response.Substring(7);
+                response = response.Replace("B", string.Empty);
+                response = response.Replace("\"", string.Empty);
+                response = response.Replace("\n", string.Empty);
+                this.DataHeader = response;
+            }
+            else
+            {
+                throw new Exception("Internal Error: Invalid LI7000 Data Header!");
+            }
         }
 
         private string? GetResponse(UsbEndpointReader argReader)
@@ -88,8 +102,11 @@
             return response;
         }
 
-        //Sometimes the message endpoint won't clear if theres an error until you write again. This funciton is to fix this.
-        private string? MessageBufferClear()
+        /// <summary>
+        /// Clears both messageReader and dataReader
+        /// </summary>
+        /// <returns></returns>
+        private string? ClearBuffers()
         {
             int bytesWritten;
             int bytesRead;
@@ -108,6 +125,17 @@
                     response += Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
                 }
 
+            } while (bytesRead > 0);
+
+            do
+            {
+                byte[] readBuffer = new byte[1024];
+                errorCode = this.dataReader.Read(readBuffer, 1000, out bytesRead);
+
+                if (bytesRead > 0)
+                {
+                    response += Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
+                }
             } while (bytesRead > 0);
 
             return response;
@@ -132,6 +160,25 @@
 
 
             return responseData;
+        }
+
+        internal void CloseConnection()
+        {
+            if (LI7000 != null)
+            {
+                if (LI7000.IsOpen)
+                {
+                    IUsbDevice wholeLI7000 = LI7000 as IUsbDevice;
+                    if (!ReferenceEquals(wholeLI7000, null))
+                    {
+                        wholeLI7000.ReleaseInterface(0);
+                    }
+
+                    LI7000.Close();
+                }
+            }
+            LI7000 = null;
+            UsbDevice.Exit();
         }
     }
 }

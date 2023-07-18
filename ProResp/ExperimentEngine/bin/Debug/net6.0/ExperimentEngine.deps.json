@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ExperimentEngine/1.0.0": {
         "dependencies": {
-          "LI7000Connection": "1.0.0"
+          "LibUsbDotNet": "2.2.29"
         },
         "runtime": {
           "ExperimentEngine.dll": {}
@@ -41,14 +41,6 @@
       "System.Security.Principal.Windows/4.5.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0"
-        }
-      },
-      "LI7000Connection/1.0.0": {
-        "dependencies": {
-          "LibUsbDotNet": "2.2.29"
-        },
-        "runtime": {
-          "LI7000Connection.dll": {}
         }
       }
     }
@@ -93,11 +85,6 @@
       "sha512": "sha512-U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
       "path": "system.security.principal.windows/4.5.0",
       "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
-    },
-    "LI7000Connection/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

@@ -91,26 +91,13 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "LI7000Connection": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/ExperimentEngine.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ExperimentEngine.dll": {}
-        }
-      },
-      "LI7000Connection/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
           "LibUsbDotNet": "2.2.29"
         },
         "compile": {
-          "bin/placeholder/LI7000Connection.dll": {}
+          "bin/placeholder/ExperimentEngine.dll": {}
         },
         "runtime": {
-          "bin/placeholder/LI7000Connection.dll": {}
+          "bin/placeholder/ExperimentEngine.dll": {}
         }
       }
     }
@@ -281,11 +268,6 @@
       "type": "project",
       "path": "../ExperimentEngine/ExperimentEngine.csproj",
       "msbuildProject": "../ExperimentEngine/ExperimentEngine.csproj"
-    },
-    "LI7000Connection/1.0.0": {
-      "type": "project",
-      "path": "../LI7000Connection/LI7000Connection.csproj",
-      "msbuildProject": "../LI7000Connection/LI7000Connection.csproj"
     }
   },
   "projectFileDependencyGroups": {
