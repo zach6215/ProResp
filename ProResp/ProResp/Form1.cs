@@ -2,12 +2,13 @@ namespace ProResp
 {
     using ExperimentEngine;
     using System.Timers;
-    using System.ComponentModel;
     public partial class Form1 : Form
     {
         const int numOfValves = 24;
         const int msValveSwitchTime = 900000; //15 mins
         const int msValveDataUpdateTime = 5000;
+        string filePath;
+        StreamWriter outputStream;
         Timer valveDataTimer;
         ExperimentEngine? experimentEngine = null;
 
@@ -20,11 +21,14 @@ namespace ProResp
                 this.valveCheckedListBox1.Items.Add("Valve " + (i+1).ToString());
             }
 
+            this.CurrentFlow_Label.Hide();
+
             this.valveCheckedListBox1.CheckOnClick = true;
 
             this.Stop_Button.Enabled = false;
         }
 
+        //Abhi: This should just itterate through all valves. 
         private void CheckAllValves_Button_Click(object sender, EventArgs e)
         {
 
@@ -94,17 +98,37 @@ namespace ProResp
 
         private void Stop_Button_Click(object sender, EventArgs e)
         {
+            //Close connections in experimentEngine and Stop/Dispose timers
             this.experimentEngine.Stop();
 
             this.experimentEngine = null;
 
+            //Enable ValveCheckedListBox, Start experiment button, CheckAllValves button,
+            //SelectAllValves button, and CreateSaveFile button.
             this.valveCheckedListBox1.Enabled = true;
             this.StartNewExperiment_Button.Enabled = true;
             this.CheckAllValves_Button.Enabled = true;
             this.SelectAllValves.Enabled = true;
+            this.CreateSaveFile_Button.Enabled = true;
+
+            //Reset labels
+            this.CurrentFileLocation_Label.Text = "Current File Location: ";
+
+            //Disable Stop button.
             this.Stop_Button.Enabled = false;
-            
-            //Dispose of timers
+        }
+
+        private void CreateSaveFile_Button_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text files (*.txt)|*.txt";
+
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.filePath = saveFileDialog1.FileName;
+                this.CurrentFileLocation_Label.Text = "Current File Location: " + this.filePath;
+
+            }
         }
     }
 }

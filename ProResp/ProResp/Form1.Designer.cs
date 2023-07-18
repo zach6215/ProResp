@@ -45,6 +45,7 @@
             this.FinalTemp_Label = new System.Windows.Forms.Label();
             this.FinalFlow_Label = new System.Windows.Forms.Label();
             this.SelectAllValves = new System.Windows.Forms.Button();
+            this.CreateSaveFile_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CheckAllValves_Button
@@ -200,11 +201,22 @@
             this.SelectAllValves.UseVisualStyleBackColor = true;
             this.SelectAllValves.Click += new System.EventHandler(this.SelectAllValves_Click);
             // 
+            // CreateSaveFile_Button
+            // 
+            this.CreateSaveFile_Button.Location = new System.Drawing.Point(54, 508);
+            this.CreateSaveFile_Button.Name = "CreateSaveFile_Button";
+            this.CreateSaveFile_Button.Size = new System.Drawing.Size(253, 121);
+            this.CreateSaveFile_Button.TabIndex = 17;
+            this.CreateSaveFile_Button.Text = "Create Data File";
+            this.CreateSaveFile_Button.UseVisualStyleBackColor = true;
+            this.CreateSaveFile_Button.Click += new System.EventHandler(this.CreateSaveFile_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1923, 724);
+            this.Controls.Add(this.CreateSaveFile_Button);
             this.Controls.Add(this.SelectAllValves);
             this.Controls.Add(this.FinalFlow_Label);
             this.Controls.Add(this.FinalTemp_Label);
@@ -248,5 +260,6 @@
         private Label FinalTemp_Label;
         private Label FinalFlow_Label;
         private Button SelectAllValves;
+        private Button CreateSaveFile_Button;
     }
 }
