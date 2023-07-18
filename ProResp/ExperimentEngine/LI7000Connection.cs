@@ -73,6 +73,7 @@
                 response = response.Replace("B", string.Empty);
                 response = response.Replace("\"", string.Empty);
                 response = response.Replace("\n", string.Empty);
+                response = response.Replace("um", "pp");
                 this.DataHeader = response;
             }
             else

@@ -10,6 +10,7 @@ namespace ProResp
         string filePath;
         StreamWriter outputStream;
         Timer valveDataTimer;
+        Timer valveSwitchTimer;
         ExperimentEngine? experimentEngine = null;
 
         public Form1()
@@ -48,7 +49,7 @@ namespace ProResp
             //this.FormSetupNoExperimentRunning();
         }
 
-        //Abhi: This should just itterate through all valves. 
+        //Abhi: Create new experiment using constructor with less arguments. 
         private void CheckAllValves_Button_Click(object sender, EventArgs e)
         {
 
@@ -77,9 +78,12 @@ namespace ProResp
             this.valveDataTimer = new Timer();
             this.valveDataTimer.SynchronizingObject = this;
 
+            this.valveSwitchTimer = new Timer();
+            this.valveSwitchTimer.SynchronizingObject = this;
+
             try
             {
-                experimentEngine = new ExperimentEngine(checkedValves, msValveDataUpdateTime, msValveSwitchTime, this.valveDataTimer);
+                experimentEngine = new ExperimentEngine(checkedValves, msValveDataUpdateTime, msValveSwitchTime, this.valveDataTimer, this.valveSwitchTimer);
 
             }
             catch (Exception ex)
@@ -106,6 +110,12 @@ namespace ProResp
             this.CurrentH2O_Label.Text = "Current H2O: " + e.ActiveValve.H2O.ToString() + ' ' + e.ActiveValve.H2OUnits;
             this.CurrentTemp_Label.Text = "Current Temperature: " + e.ActiveValve.Temperature.ToString() + ' ' + e.ActiveValve.TemperatureUnits;
             this.CurrentFlow_Label.Text = "Current Flow: " + e.ActiveValve.Flow.ToString();
+        }
+
+        //Abhi: This will be called when ValvesSwitched event is invoked
+        private void ValvesSwitched(object sender, DataUpdateEventArgs e)
+        {
+
         }
 
         private void SelectAllValves_Click(object sender, EventArgs e)
