@@ -18,14 +18,34 @@ namespace ProResp
 
             for (int i = 0; i < numOfValves; i++)
             {
+                //Add items to valve checked list box
                 this.valveCheckedListBox1.Items.Add("Valve " + (i+1).ToString());
-            }
 
-            this.CurrentFlow_Label.Hide();
+                //Add labels to valve weight group box
+                Label newValveWeight_Label = new System.Windows.Forms.Label();
+                newValveWeight_Label.Location = new System.Drawing.Point(30 + ((i/8)*300), 65 * ((i%8) + 1));
+                newValveWeight_Label.Name = "WeightValve" + (i + 1) + "_Label";
+                newValveWeight_Label.Size = new System.Drawing.Size(110, 32);
+                newValveWeight_Label.TabIndex = i;
+                newValveWeight_Label.Text = "Valve " + (i + 1) + ":";
+                this.valveWeightGroupBox.Controls.Add(newValveWeight_Label);
+
+                //Add textboxes to valve weight group box
+                TextBox newValveWeight_TextBox = new System.Windows.Forms.TextBox();
+                newValveWeight_TextBox.Location = new System.Drawing.Point(140 + ((i/8)*300), 65 * ((i%8) + 1));
+                newValveWeight_TextBox.Name = "WeightValve" + (i + 1) + "_TextBox";
+                newValveWeight_TextBox.Size = new System.Drawing.Size(175, 39);
+                newValveWeight_TextBox.TabIndex = i + 1;
+                newValveWeight_TextBox.Enabled = false;
+                this.valveWeightGroupBox.Controls.Add(newValveWeight_TextBox);
+            }
 
             this.valveCheckedListBox1.CheckOnClick = true;
 
+            this.experimentGroupBox.Hide();
+
             this.Stop_Button.Enabled = false;
+            //this.FormSetupNoExperimentRunning();
         }
 
         //Abhi: This should just itterate through all valves. 
@@ -128,6 +148,64 @@ namespace ProResp
                 this.filePath = saveFileDialog1.FileName;
                 this.CurrentFileLocation_Label.Text = "Current File Location: " + this.filePath;
 
+            }
+        }
+
+        // Form setup when no experiment is running
+        private void FormSetupNoExperimentRunning()
+        {
+            //Disable all unnecessary Buttons
+            this.Stop_Button.Enabled = false;
+
+            //Enable all necessary Buttons
+            this.valveCheckedListBox1.Enabled = true;
+            this.StartNewExperiment_Button.Enabled = true;
+            this.CheckAllValves_Button.Enabled = true;
+            this.SelectAllValves.Enabled = true;
+            this.CreateSaveFile_Button.Enabled = true;
+
+            //Hide all unnecessary Lables
+            this.ActiveChamber_Label.Hide();
+            this.CurrentCO2_Label.Hide();
+            this.CurrentH2O_Label.Hide();
+            this.CurrentTemp_Label.Hide();
+            this.CurrentFlow_Label.Hide();
+            this.PreviousValve_Label.Hide();
+            this.FinalCO2_Label.Hide();
+            this.FinalH2O_Label.Hide();
+            this.FinalTemp_Label.Hide();
+            this.FinalFlow_Label.Hide();
+        }
+
+        private void valveCheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            int index = e.Index;
+
+            if (e.NewValue == CheckState.Checked)
+            {
+                foreach(Control textBox in this.valveWeightGroupBox.Controls)
+                {
+                    if (textBox is TextBox)
+                    {
+                        if(textBox.Name == "WeightValve" + (index + 1) + "_TextBox")
+                        {
+                            textBox.Enabled = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control textBox in this.valveWeightGroupBox.Controls)
+                {
+                    if (textBox is TextBox)
+                    {
+                        if (textBox.Name == "WeightValve" + (index + 1) + "_TextBox")
+                        {
+                            textBox.Enabled = false;
+                        }
+                    }
+                }
             }
         }
     }
