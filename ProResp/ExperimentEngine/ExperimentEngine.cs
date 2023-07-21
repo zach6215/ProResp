@@ -13,11 +13,18 @@
         private int msValveDataTime;    //Milliseconds until data is updated
         private Timer? valveDataTimer;
         private Timer? valveSwitchTimer;
-        private TextWriter outputFile;
         private LI7000Connection LI7000;
-        private string LI7000DataHeader;
+        private string lI7000DataHeader;
+        private string dateTimeHeader;
+        private DateTime startDateTime;
+        
+
+        public string DateTimeHeader { get { return dateTimeHeader; } private set { dateTimeHeader = value; } }
+        public string LI7000DataHeader { get { return lI7000DataHeader; } private set { lI7000DataHeader = value; } }
+        public double DaysSinceStart { get { return (DateTime.Now.Date - startDateTime.Date).TotalDays; } }
 
         public event EventHandler<DataUpdateEventArgs> DataUpdated;
+        public event EventHandler<DataUpdateEventArgs> ValveSwitched;
         
         public List<Valve> ValvesList 
         { 
@@ -42,6 +49,7 @@
             this.LI7000 = new LI7000Connection();
 
             this.LI7000DataHeader = this.LI7000.DataHeader;
+            this.DateTimeHeader = "Date (mm/dd/yyyy) \t Time (hh:mm)";
 
             string[] units = LI7000DataHeader.Split('\t');
 
@@ -89,13 +97,21 @@
 
         public void Start()
         {
-            this.valveDataTimer.Enabled=true;
-            this.valveSwitchTimer.Enabled=true;
+            this.startDateTime = DateTime.Now;
+            if (this.valveDataTimer != null)
+            {
+                this.valveDataTimer.Enabled = true;
+            }
+            if (this.valveSwitchTimer != null)
+            {
+                this.valveSwitchTimer.Enabled = true;
+            }
             return;
         }
 
         private void UpdateValveValue(Object source, ElapsedEventArgs e)
         {
+            this.activeValve.MeasurementDateTime = DateTime.Now;
             string? response = LI7000.Poll();
             string newData = string.Empty;
 
@@ -125,7 +141,7 @@
             }
         }
 
-        //Abhi: Add code to switch valves here. In the end it should invoke this.ValveSwitch event.
+        //Abhi: Add code to switch valves here. In the end it should invoke this.ValveSwitched event.
         private void SwitchValves(Object source, ElapsedEventArgs e)
         {
 
@@ -153,8 +169,5 @@
             //Disconnect all devices
             //Close stream
         }
-
-
-
     }
 }

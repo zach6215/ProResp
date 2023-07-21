@@ -4,6 +4,8 @@
     {
         public string Name { get; private set; }
 
+        public DateTime MeasurementDateTime { get; internal set; }
+
         public double CO2 { get; internal set; }
         public string CO2Units { get; internal set; }
 

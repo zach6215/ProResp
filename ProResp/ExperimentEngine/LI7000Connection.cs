@@ -149,7 +149,7 @@
             ErrorCode errorCode = ErrorCode.None;
             int bytesWritten;
 
-
+            //Error: System.ObjectDispoedExeption: 'Safe handle has been closed.'
             errorCode = this.writer.Write(Encoding.Default.GetBytes("(USB(Poll Now))"), this.writeTimeLimit,out bytesWritten);
 
             responseMessage = this.GetResponse(this.messageReader);
