@@ -7,7 +7,7 @@ namespace ProResp
         const int numOfValves = 24;
         const int msValveSwitchTime = 900000; //15 mins
         const int msValveDataUpdateTime = 5000;
-        string filePath;
+        string? filePath;
         StreamWriter outputStream;
         Timer valveDataTimer;
         Timer valveSwitchTimer;
@@ -46,7 +46,6 @@ namespace ProResp
             this.experimentGroupBox.Hide();
 
             this.Stop_Button.Enabled = false;
-            //this.FormSetupNoExperimentRunning();
         }
 
         //Abhi: Create new experiment using constructor with less arguments. 
@@ -57,7 +56,7 @@ namespace ProResp
 
         private void StartNewExperiment_Button_Click(object sender, EventArgs e)
         {
-            List<string> checkedValves = new List<string>();
+            List<int> checkedValves = new List<int>();
 
             if (experimentEngine != null)
             {
@@ -65,14 +64,24 @@ namespace ProResp
                 return;
             }
 
+            if (this.filePath == null)
+            {
+                MessageBox.Show("No file selected! Please select a file to store data.");
+                return;
+            }
+            else
+            {
+                this.outputStream = new StreamWriter(this.filePath);
+            }
+
             foreach(string checkedItem in valveCheckedListBox1.CheckedItems)
             {
-                checkedValves.Add(checkedItem);
+                checkedValves.Add(int.Parse(checkedItem.Replace("Valve ", string.Empty)));
             }
 
             if (checkedValves.Count < 1)
             {
-                MessageBox.Show("No valves selected! Please select valve(s)");
+                MessageBox.Show("No valves selected! Please select valve(s).");
             }
 
             this.valveDataTimer = new Timer();
@@ -84,7 +93,6 @@ namespace ProResp
             try
             {
                 experimentEngine = new ExperimentEngine(checkedValves, msValveDataUpdateTime, msValveSwitchTime, this.valveDataTimer, this.valveSwitchTimer);
-
             }
             catch (Exception ex)
             {
@@ -93,23 +101,23 @@ namespace ProResp
             }
 
             this.experimentEngine.DataUpdated += ValveDataUpdated;
+            this.experimentEngine.ValveSwitched += ValvesSwitched;
 
-            this.valveCheckedListBox1.Enabled = false;
-            this.StartNewExperiment_Button.Enabled = false;
-            this.CheckAllValves_Button.Enabled = false;
-            this.SelectAllValves.Enabled = false;
-            this.Stop_Button.Enabled = true;
+            this.WriteDataHeader();
 
-            experimentEngine.Start();
+            this.FormSetupExperimentRunning();
+
+            this.experimentEngine.Start();
         }
 
         private void ValveDataUpdated(object sender, DataUpdateEventArgs e)
         {
-            this.ActiveChamber_Label.Text = "Active Valve: " + e.ActiveValve.Name;
+            this.ActiveChamber_Label.Text = "Active Valve: " + e.ActiveValve.ValveNum;
             this.CurrentCO2_Label.Text = "Current CO2: " + e.ActiveValve.CO2.ToString() + ' ' + e.ActiveValve.CO2Units;
             this.CurrentH2O_Label.Text = "Current H2O: " + e.ActiveValve.H2O.ToString() + ' ' + e.ActiveValve.H2OUnits;
             this.CurrentTemp_Label.Text = "Current Temperature: " + e.ActiveValve.Temperature.ToString() + ' ' + e.ActiveValve.TemperatureUnits;
             this.CurrentFlow_Label.Text = "Current Flow: " + e.ActiveValve.Flow.ToString();
+            this.WriteValveData(e.ActiveValve);
         }
 
         //Abhi: This will be called when ValvesSwitched event is invoked
@@ -133,19 +141,13 @@ namespace ProResp
 
             this.experimentEngine = null;
 
-            //Enable ValveCheckedListBox, Start experiment button, CheckAllValves button,
-            //SelectAllValves button, and CreateSaveFile button.
-            this.valveCheckedListBox1.Enabled = true;
-            this.StartNewExperiment_Button.Enabled = true;
-            this.CheckAllValves_Button.Enabled = true;
-            this.SelectAllValves.Enabled = true;
-            this.CreateSaveFile_Button.Enabled = true;
+            this.FormSetupNoExperimentRunning();
 
             //Reset labels
             this.CurrentFileLocation_Label.Text = "Current File Location: ";
 
-            //Disable Stop button.
-            this.Stop_Button.Enabled = false;
+            this.outputStream.Close();
+            this.filePath = null;
         }
 
         private void CreateSaveFile_Button_Click(object sender, EventArgs e)
@@ -157,7 +159,6 @@ namespace ProResp
             {
                 this.filePath = saveFileDialog1.FileName;
                 this.CurrentFileLocation_Label.Text = "Current File Location: " + this.filePath;
-
             }
         }
 
@@ -175,16 +176,23 @@ namespace ProResp
             this.CreateSaveFile_Button.Enabled = true;
 
             //Hide all unnecessary Lables
-            this.ActiveChamber_Label.Hide();
-            this.CurrentCO2_Label.Hide();
-            this.CurrentH2O_Label.Hide();
-            this.CurrentTemp_Label.Hide();
-            this.CurrentFlow_Label.Hide();
-            this.PreviousValve_Label.Hide();
-            this.FinalCO2_Label.Hide();
-            this.FinalH2O_Label.Hide();
-            this.FinalTemp_Label.Hide();
-            this.FinalFlow_Label.Hide();
+            this.experimentGroupBox.Hide();
+            //Show all necessary Lables
+            this.valveWeightGroupBox.Show();
+        }
+
+        private void FormSetupExperimentRunning()
+        {
+            //Disable/Enable all buttons and checkedListBox
+            this.valveCheckedListBox1.Enabled = false;
+            this.StartNewExperiment_Button.Enabled = false;
+            this.CheckAllValves_Button.Enabled = false;
+            this.SelectAllValves.Enabled = false;
+            this.Stop_Button.Enabled = true;
+            this.CreateSaveFile_Button.Enabled = false;
+
+            this.valveWeightGroupBox.Hide();
+            this.experimentGroupBox.Show();
         }
 
         private void valveCheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -217,6 +225,38 @@ namespace ProResp
                     }
                 }
             }
+        }
+
+        private void WriteDataHeader()
+        {
+            string header = string.Empty;
+            if (this.experimentEngine != null)
+            {
+                header = "Day of Experiment\t";
+                header += this.experimentEngine.DateTimeHeader + "\t" + "Valve\t" + this.experimentEngine.LI7000DataHeader;
+                header = header.Replace("pp/m", "(pp/m)").Replace("mm/m","(mm/m)").Replace("T C", "Temp ('C)");
+                
+                this.outputStream.WriteLine(header);
+            }
+        }
+
+        private void WriteValveData(Valve argValve)
+        {
+            string valveData = string.Empty;
+
+            valveData = this.experimentEngine.DaysSinceStart.ToString() + "\t";
+            //Datetime
+            valveData += argValve.MeasurementDateTime.ToString("MM/dd/yyyy") + "\t";
+            valveData += argValve.MeasurementDateTime.ToString("H:mm") + "\t";
+
+            //Data
+            valveData += argValve.ValveNum + "\t";
+            valveData += argValve.CO2.ToString() + "\t";
+            valveData += argValve.H2O.ToString() + "\t";
+            valveData += argValve.Temperature.ToString() + "\t";
+            valveData += argValve.Flow.ToString() + "\t";
+
+            this.outputStream.WriteLine(valveData);
         }
     }
 }

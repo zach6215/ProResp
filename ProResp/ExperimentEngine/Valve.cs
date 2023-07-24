@@ -2,7 +2,10 @@
 {
     public class Valve
     {
-        public string Name { get; private set; }
+        //public string Name { get; private set; }
+
+        public int ValveNum { get; private set; }
+        public DateTime MeasurementDateTime { get; internal set; }
 
         public double CO2 { get; internal set; }
         public string CO2Units { get; internal set; }
@@ -16,14 +19,14 @@
         public double Flow { get; internal set; }
         public string FlowUnits { get; internal set; }
 
-        internal Valve(string argName)
+        internal Valve(int argValveNum)
         {
-            this.Name = argName;
+            this.ValveNum = argValveNum;
         }
 
-        internal Valve(string argName, double argCO2, double argH2O, double argTemp, double argFlow)
+        internal Valve(int argValveNum, double argCO2, double argH2O, double argTemp, double argFlow)
         {
-            this.Name = argName;
+            this.ValveNum = argValveNum;
             this.CO2 = argCO2;
             this.H2O = argH2O;
             this.Temperature = argTemp;

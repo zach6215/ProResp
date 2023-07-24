@@ -101,15 +101,15 @@
             // 
             // ActiveChamber_Label
             // 
-            this.ActiveChamber_Label.Location = new System.Drawing.Point(52, 50);
+            this.ActiveChamber_Label.Location = new System.Drawing.Point(50, 60);
             this.ActiveChamber_Label.Name = "ActiveChamber_Label";
             this.ActiveChamber_Label.Size = new System.Drawing.Size(371, 32);
             this.ActiveChamber_Label.TabIndex = 5;
-            this.ActiveChamber_Label.Text = "Active Valve: ";
+            this.ActiveChamber_Label.Text = "Active Valve:";
             // 
             // CurrentCO2_Label
             // 
-            this.CurrentCO2_Label.Location = new System.Drawing.Point(55, 112);
+            this.CurrentCO2_Label.Location = new System.Drawing.Point(50, 120);
             this.CurrentCO2_Label.Name = "CurrentCO2_Label";
             this.CurrentCO2_Label.Size = new System.Drawing.Size(374, 32);
             this.CurrentCO2_Label.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // CurrentH2O_Label
             // 
-            this.CurrentH2O_Label.Location = new System.Drawing.Point(52, 181);
+            this.CurrentH2O_Label.Location = new System.Drawing.Point(50, 180);
             this.CurrentH2O_Label.Name = "CurrentH2O_Label";
             this.CurrentH2O_Label.Size = new System.Drawing.Size(372, 32);
             this.CurrentH2O_Label.TabIndex = 7;
@@ -125,7 +125,7 @@
             // 
             // CurrentTemp_Label
             // 
-            this.CurrentTemp_Label.Location = new System.Drawing.Point(55, 262);
+            this.CurrentTemp_Label.Location = new System.Drawing.Point(50, 240);
             this.CurrentTemp_Label.Name = "CurrentTemp_Label";
             this.CurrentTemp_Label.Size = new System.Drawing.Size(371, 32);
             this.CurrentTemp_Label.TabIndex = 8;
@@ -133,7 +133,7 @@
             // 
             // CurrentFlow_Label
             // 
-            this.CurrentFlow_Label.Location = new System.Drawing.Point(55, 412);
+            this.CurrentFlow_Label.Location = new System.Drawing.Point(50, 300);
             this.CurrentFlow_Label.Name = "CurrentFlow_Label";
             this.CurrentFlow_Label.Size = new System.Drawing.Size(371, 32);
             this.CurrentFlow_Label.TabIndex = 9;
@@ -151,7 +151,7 @@
             // PreviousValve_Label
             // 
             this.PreviousValve_Label.AutoSize = true;
-            this.PreviousValve_Label.Location = new System.Drawing.Point(499, 44);
+            this.PreviousValve_Label.Location = new System.Drawing.Point(500, 60);
             this.PreviousValve_Label.Name = "PreviousValve_Label";
             this.PreviousValve_Label.Size = new System.Drawing.Size(172, 32);
             this.PreviousValve_Label.TabIndex = 11;
@@ -160,7 +160,7 @@
             // FinalCO2_Label
             // 
             this.FinalCO2_Label.AutoSize = true;
-            this.FinalCO2_Label.Location = new System.Drawing.Point(499, 129);
+            this.FinalCO2_Label.Location = new System.Drawing.Point(500, 120);
             this.FinalCO2_Label.Name = "FinalCO2_Label";
             this.FinalCO2_Label.Size = new System.Drawing.Size(121, 32);
             this.FinalCO2_Label.TabIndex = 12;
@@ -169,7 +169,7 @@
             // FinalH2O_Label
             // 
             this.FinalH2O_Label.AutoSize = true;
-            this.FinalH2O_Label.Location = new System.Drawing.Point(499, 223);
+            this.FinalH2O_Label.Location = new System.Drawing.Point(500, 180);
             this.FinalH2O_Label.Name = "FinalH2O_Label";
             this.FinalH2O_Label.Size = new System.Drawing.Size(131, 32);
             this.FinalH2O_Label.TabIndex = 13;
@@ -178,16 +178,16 @@
             // FinalTemp_Label
             // 
             this.FinalTemp_Label.AutoSize = true;
-            this.FinalTemp_Label.Location = new System.Drawing.Point(499, 311);
+            this.FinalTemp_Label.Location = new System.Drawing.Point(500, 240);
             this.FinalTemp_Label.Name = "FinalTemp_Label";
             this.FinalTemp_Label.Size = new System.Drawing.Size(135, 32);
             this.FinalTemp_Label.TabIndex = 14;
-            this.FinalTemp_Label.Text = "Final Temp:";
+            this.FinalTemp_Label.Text = "Final Temperature:";
             // 
             // FinalFlow_Label
             // 
             this.FinalFlow_Label.AutoSize = true;
-            this.FinalFlow_Label.Location = new System.Drawing.Point(499, 412);
+            this.FinalFlow_Label.Location = new System.Drawing.Point(500, 300);
             this.FinalFlow_Label.Name = "FinalFlow_Label";
             this.FinalFlow_Label.Size = new System.Drawing.Size(125, 32);
             this.FinalFlow_Label.TabIndex = 15;

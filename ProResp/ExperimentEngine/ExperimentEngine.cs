@@ -2,33 +2,30 @@
 {
     using System;
     using System.Timers;
+    using System.Collections.Generic;
     using LI7000Connection;
 
 
     public class ExperimentEngine
     {
-        private List<Valve> valvesList;
-        private Valve activeValve;
+        private LinkedList<Valve> valvesList;
+        private LinkedListNode<Valve> currentNode;
         private int msValveSwitchTime; // Milliseconds until valve switch
         private int msValveDataTime;    //Milliseconds until data is updated
         private Timer? valveDataTimer;
         private Timer? valveSwitchTimer;
-        private TextWriter outputFile;
         private LI7000Connection LI7000;
-        private string LI7000DataHeader;
+        private string lI7000DataHeader;
+        private string dateTimeHeader;
+        private DateTime startDateTime;
 
         public event EventHandler<DataUpdateEventArgs> DataUpdated;
-        
-        public List<Valve> ValvesList 
-        { 
-          get { return new List<Valve>(valvesList); }
-          private set { valvesList = value; }
-        }
-        public Valve ActiveValve
-        {
-            get { return this.activeValve; }
-            private set { this.activeValve = value; }
-        }
+        public event EventHandler<DataUpdateEventArgs> ValveSwitched;
+
+
+        public string DateTimeHeader { get { return dateTimeHeader; } private set { dateTimeHeader = value; } }
+        public string LI7000DataHeader { get { return lI7000DataHeader; } private set { lI7000DataHeader = value; } }
+        public double DaysSinceStart { get { return (DateTime.Now.Date - startDateTime.Date).TotalDays; } }
 
         //Abhi: This constructor can be used to create experiment for Check Valves Button
         public ExperimentEngine(List<string> argActiveValves, int argMsValveSwitchTime, Timer argValveSwitchTimer)
@@ -36,18 +33,19 @@
 
         }
 
-        public ExperimentEngine(List<string> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer, Timer argValveSwitchTimer)
+        public ExperimentEngine(List<int> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer, Timer argValveSwitchTimer)
         {
-            this.valvesList = new List<Valve>();
+            this.valvesList = new LinkedList<Valve>();
             this.LI7000 = new LI7000Connection();
 
             this.LI7000DataHeader = this.LI7000.DataHeader;
+            this.DateTimeHeader = "Date (mm/dd/yyyy) \t Time (hh:mm)";
 
             string[] units = LI7000DataHeader.Split('\t');
 
-            foreach (string valveName in argActiveValves)
+            foreach (int valveNum in argActiveValves)
             {
-                Valve newValve = new Valve(valveName);
+                Valve newValve = new Valve(valveNum);
 
                 for (int i = 0; i < units.Length; i++)
                 {
@@ -67,10 +65,11 @@
                         newValve.TemperatureUnits = units[i];
                     }
                 }
-                this.valvesList.Add(newValve);
+                LinkedListNode<Valve> newNode = new LinkedListNode<Valve>(newValve); 
+                this.valvesList.AddLast(newNode);
             }
 
-            this.activeValve = valvesList[0];
+            this.currentNode = valvesList.First;
 
 
             this.msValveSwitchTime = argMsValveSwitchTime;
@@ -89,13 +88,21 @@
 
         public void Start()
         {
-            this.valveDataTimer.Enabled=true;
-            this.valveSwitchTimer.Enabled=true;
+            this.startDateTime = DateTime.Now;
+            if (this.valveDataTimer != null)
+            {
+                this.valveDataTimer.Enabled = true;
+            }
+            if (this.valveSwitchTimer != null)
+            {
+                this.valveSwitchTimer.Enabled = true;
+            }
             return;
         }
 
         private void UpdateValveValue(Object source, ElapsedEventArgs e)
         {
+            this.currentNode.Value.MeasurementDateTime = DateTime.Now;
             string? response = LI7000.Poll();
             string newData = string.Empty;
 
@@ -111,24 +118,23 @@
                     switch (headers[i][0])
                     {
                         case 'C':
-                            this.activeValve.CO2 = double.Parse(data[i]);
+                            this.currentNode.Value.CO2 = double.Parse(data[i]);
                             break;
                         case 'H':
-                            this.activeValve.H2O = double.Parse(data[i]);
+                            this.currentNode.Value.H2O = double.Parse(data[i]);
                             break;
                         case 'T':
-                            this.activeValve.Temperature = double.Parse(data[i]);
+                            this.currentNode.Value.Temperature = double.Parse(data[i]);
                             break;
                     }
                 }
-                this.DataUpdated.Invoke(this, new DataUpdateEventArgs(this.activeValve));
+                this.DataUpdated.Invoke(this, new DataUpdateEventArgs(this.currentNode.Value));
             }
         }
 
-        //Abhi: Add code to switch valves here. In the end it should invoke this.ValveSwitch event.
+        //Abhi: Add code to switch valves here. In the end it should invoke this.ValveSwitched event.
         private void SwitchValves(Object source, ElapsedEventArgs e)
         {
-
         }
 
         public void Stop()
@@ -153,8 +159,5 @@
             //Disconnect all devices
             //Close stream
         }
-
-
-
     }
 }
