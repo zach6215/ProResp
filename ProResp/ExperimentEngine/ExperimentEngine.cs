@@ -17,14 +17,14 @@
         private string lI7000DataHeader;
         private string dateTimeHeader;
         private DateTime startDateTime;
-        
+
+        public event EventHandler<DataUpdateEventArgs> DataUpdated;
+        public event EventHandler<DataUpdateEventArgs> ValveSwitched;
+
 
         public string DateTimeHeader { get { return dateTimeHeader; } private set { dateTimeHeader = value; } }
         public string LI7000DataHeader { get { return lI7000DataHeader; } private set { lI7000DataHeader = value; } }
         public double DaysSinceStart { get { return (DateTime.Now.Date - startDateTime.Date).TotalDays; } }
-
-        public event EventHandler<DataUpdateEventArgs> DataUpdated;
-        public event EventHandler<DataUpdateEventArgs> ValveSwitched;
         
         public List<Valve> ValvesList 
         { 
@@ -43,38 +43,38 @@
 
         }
 
-        public ExperimentEngine(List<string> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer, Timer argValveSwitchTimer)
+        public ExperimentEngine(List<int> argActiveValves, int argMsValveDataTime, int argMsValveSwitchTime, Timer argValveDataTimer, Timer argValveSwitchTimer)
         {
             this.valvesList = new List<Valve>();
-            this.LI7000 = new LI7000Connection();
+            //this.LI7000 = new LI7000Connection();
 
-            this.LI7000DataHeader = this.LI7000.DataHeader;
-            this.DateTimeHeader = "Date (mm/dd/yyyy) \t Time (hh:mm)";
+            //this.LI7000DataHeader = this.LI7000.DataHeader;
+            //this.DateTimeHeader = "Date (mm/dd/yyyy) \t Time (hh:mm)";
 
-            string[] units = LI7000DataHeader.Split('\t');
+            //string[] units = LI7000DataHeader.Split('\t');
 
-            foreach (string valveName in argActiveValves)
+            foreach (int valveNum in argActiveValves)
             {
-                Valve newValve = new Valve(valveName);
+                Valve newValve = new Valve(valveNum);
 
-                for (int i = 0; i < units.Length; i++)
-                {
-                    if (units[i].Contains("CO2"))
-                    {
-                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
-                        newValve.CO2Units = units[i];
-                    }
-                    else if (units[i].Contains("H2O"))
-                    {
-                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
-                        newValve.H2OUnits = units[i];
-                    }
-                    else if (units[i].Contains('T'))
-                    {
-                        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
-                        newValve.TemperatureUnits = units[i];
-                    }
-                }
+                //for (int i = 0; i < units.Length; i++)
+                //{
+                //    if (units[i].Contains("CO2"))
+                //    {
+                //        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                //        newValve.CO2Units = units[i];
+                //    }
+                //    else if (units[i].Contains("H2O"))
+                //    {
+                //        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                //        newValve.H2OUnits = units[i];
+                //    }
+                //    else if (units[i].Contains('T'))
+                //    {
+                //        units[i] = units[i].Substring(units[i].IndexOf(' ') + 1);
+                //        newValve.TemperatureUnits = units[i];
+                //    }
+                //}
                 this.valvesList.Add(newValve);
             }
 

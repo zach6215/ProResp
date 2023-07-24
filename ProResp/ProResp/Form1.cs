@@ -56,7 +56,7 @@ namespace ProResp
 
         private void StartNewExperiment_Button_Click(object sender, EventArgs e)
         {
-            List<string> checkedValves = new List<string>();
+            List<int> checkedValves = new List<int>();
 
             if (experimentEngine != null)
             {
@@ -76,7 +76,7 @@ namespace ProResp
 
             foreach(string checkedItem in valveCheckedListBox1.CheckedItems)
             {
-                checkedValves.Add(checkedItem);
+                checkedValves.Add(int.Parse(checkedItem.Replace("Valve ", string.Empty)));
             }
 
             if (checkedValves.Count < 1)
@@ -112,7 +112,7 @@ namespace ProResp
 
         private void ValveDataUpdated(object sender, DataUpdateEventArgs e)
         {
-            this.ActiveChamber_Label.Text = "Active Valve: " + e.ActiveValve.Name;
+            this.ActiveChamber_Label.Text = "Active Valve: " + e.ActiveValve.ValveNum;
             this.CurrentCO2_Label.Text = "Current CO2: " + e.ActiveValve.CO2.ToString() + ' ' + e.ActiveValve.CO2Units;
             this.CurrentH2O_Label.Text = "Current H2O: " + e.ActiveValve.H2O.ToString() + ' ' + e.ActiveValve.H2OUnits;
             this.CurrentTemp_Label.Text = "Current Temperature: " + e.ActiveValve.Temperature.ToString() + ' ' + e.ActiveValve.TemperatureUnits;
@@ -250,7 +250,7 @@ namespace ProResp
             valveData += argValve.MeasurementDateTime.ToString("H:mm") + "\t";
 
             //Data
-            valveData += argValve.Name.Replace("Valve ", string.Empty) + "\t";
+            valveData += argValve.ValveNum + "\t";
             valveData += argValve.CO2.ToString() + "\t";
             valveData += argValve.H2O.ToString() + "\t";
             valveData += argValve.Temperature.ToString() + "\t";
